@@ -1,0 +1,30 @@
+//
+//  UIBarButtonItem+Category.m
+//  sunvhui
+//
+//  Created by Xu on 2016/8/29.
+//  Copyright © 2016年 Xu. All rights reserved.
+//
+
+#import "UIBarButtonItem+Category.h"
+
+@implementation UIBarButtonItem (Category)
+/**
+ 快速创建一个UIBarButtonItem模型对象
+ 
+ @param image 普通状态的图片
+ @param highImage 高亮状态的图片
+ @param target 事件对象
+ @param action 事件对象的方法
+ @return UIBarButtonItem模型对象
+ */
++ (instancetype)itemWithImage:(NSString *)image highImage:(NSString *)highImage target:(id)target action:(SEL)action{
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:highImage] forState:UIControlStateHighlighted];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [button sizeToFit];
+    return [[self alloc] initWithCustomView:button];
+}
+@end
